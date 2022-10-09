@@ -421,8 +421,6 @@ void moveToPoseSecs2(float rot1, float rot2, float rot3, float seconds) {
   float motorSpeed2 = rot2/(6*seconds);
   float motorSpeed3 = rot3/(6*seconds);
 
-  DEBUG_SERIAL.print("motor speed 1: "); DEBUG_SERIAL.println(motorSpeed1);
-
   // Command motor velocities to these values for given time
   setMotorVelocities(motorSpeed1, motorSpeed2, motorSpeed3);
   delay(seconds*1000);
@@ -446,8 +444,6 @@ void moveToPoseSecs2(float rot1, float rot2, float rot3, float seconds) {
 */
 void setArcParameters(float phi, float K, float seconds) {
 
-  DEBUG_SERIAL.print("K = "); DEBUG_SERIAL.println(K);
-
   // Limit the input curvature to the pre-set bounded value
   if (K > MAX_CURVATURE) {
     K = MAX_CURVATURE;
@@ -467,9 +463,9 @@ void setArcParameters(float phi, float K, float seconds) {
     float theta = NOTCH_HEIGHT*K;
 
     // Calculate the distance of each tendon from the robot centerline in the place of curvature
-    float r1 = R_PRIME*cos(phi);
-    float r2 = R_PRIME*cos(phi + GAMMA);
-    float r3 = R_PRIME*cos(phi - GAMMA);
+    float r1 = R_PRIME*cos(phi - GAMMA);
+    float r2 = R_PRIME*cos(phi);
+    float r3 = R_PRIME*cos(phi + GAMMA);
 
     // Calculate the height of the tendons for the specified configurations (for one notch)
     float t1 = 2*(R-r1)*sin(theta/2);
@@ -486,13 +482,13 @@ void setArcParameters(float phi, float K, float seconds) {
     angle2 = deltaLtoAngle(deltaL2*NUM_NOTCHES);
     angle3 = deltaLtoAngle(deltaL3*NUM_NOTCHES);
 
-    // Temporary: Print a bunch of stuff for debugging purposes
-    DEBUG_SERIAL.print("phi = "); DEBUG_SERIAL.println(phi);
-    DEBUG_SERIAL.print("R = "); DEBUG_SERIAL.println(R);
-    DEBUG_SERIAL.print("theta = "); DEBUG_SERIAL.println(theta);
-    DEBUG_SERIAL.print("r1 = "); DEBUG_SERIAL.println(r1);
-    DEBUG_SERIAL.print("t1 = "); DEBUG_SERIAL.println(t1);
-    DEBUG_SERIAL.print("deltaL1 = "); DEBUG_SERIAL.println(deltaL1);
+//    // Temporary: Print a bunch of stuff for debugging purposes
+//    DEBUG_SERIAL.print("phi = "); DEBUG_SERIAL.println(phi);
+//    DEBUG_SERIAL.print("R = "); DEBUG_SERIAL.println(R);
+//    DEBUG_SERIAL.print("theta = "); DEBUG_SERIAL.println(theta);
+//    DEBUG_SERIAL.print("r1 = "); DEBUG_SERIAL.println(r1);
+//    DEBUG_SERIAL.print("t1 = "); DEBUG_SERIAL.println(t1);
+//    DEBUG_SERIAL.print("deltaL1 = "); DEBUG_SERIAL.println(deltaL1);
     
   }
 
@@ -510,12 +506,12 @@ void setArcParameters(float phi, float K, float seconds) {
   float currentAngle3 = dxl.getPresentPosition(DXL3_ID, UNIT_DEGREE);
   float rot3 = adjustedAngle3 - currentAngle3;
 
-  //Temporary: print a bunch of stuff for debugging purposes
-  DEBUG_SERIAL.print("angle1 = "); DEBUG_SERIAL.println(angle1);
-  DEBUG_SERIAL.print("initialRot1 = "); DEBUG_SERIAL.println(initialRot1);
-  DEBUG_SERIAL.print("adjustedAngle1 = "); DEBUG_SERIAL.println(adjustedAngle1);
-  DEBUG_SERIAL.print("currentAngle1 = "); DEBUG_SERIAL.println(currentAngle1);
-  DEBUG_SERIAL.print("rot1 = "); DEBUG_SERIAL.println(rot1);
+//  //Temporary: print a bunch of stuff for debugging purposes
+//  DEBUG_SERIAL.print("angle1 = "); DEBUG_SERIAL.println(angle1);
+//  DEBUG_SERIAL.print("initialRot1 = "); DEBUG_SERIAL.println(initialRot1);
+//  DEBUG_SERIAL.print("adjustedAngle1 = "); DEBUG_SERIAL.println(adjustedAngle1);
+//  DEBUG_SERIAL.print("currentAngle1 = "); DEBUG_SERIAL.println(currentAngle1);
+//  DEBUG_SERIAL.print("rot1 = "); DEBUG_SERIAL.println(rot1);
 
   // Execute a moveToPoseSecs command to hit the specified pose over the input time interval
   moveToPoseSecs2(rot1, rot2, rot3, seconds);
@@ -608,29 +604,41 @@ void setup() {
 
 void loop() {
 
-  setArcParameters(0,10,1);
   DEBUG_SERIAL.println("Position 1");
+  setArcParameters(0,10,1);
   delay(2000);
-  setArcParameters(0,0,1);
   DEBUG_SERIAL.println("Home");
-  delay(2000);
-  setArcParameters(PI/2,10,1);
-  DEBUG_SERIAL.println("Position 2");
-  delay(2000);
   setArcParameters(0,0,1);
-  DEBUG_SERIAL.println("Home");
   delay(2000);
-  setArcParameters(PI,10,1);
+//  DEBUG_SERIAL.println("Position 2");
+//  setArcParameters(PI/3.0,10,1);
+//  delay(2000);
+//  DEBUG_SERIAL.println("Home");
+//  setArcParameters(0,0,1);
+//  delay(2000);
   DEBUG_SERIAL.println("Position 3");
+  setArcParameters((2.0*PI)/3.0,10,1);
   delay(2000);
-  setArcParameters(0,0,1);
   DEBUG_SERIAL.println("Home");
-  delay(2000);
-  setArcParameters((3.0*PI)/2.0,10,1);
-  DEBUG_SERIAL.println("Position 3");
-  delay(2000);
   setArcParameters(0,0,1);
-  DEBUG_SERIAL.println("Home");
   delay(2000);
+//  DEBUG_SERIAL.println("Position 4");
+//  setArcParameters(PI,10,1);
+//  delay(2000);
+//  DEBUG_SERIAL.println("Home");
+//  setArcParameters(0,0,1);
+//  delay(2000);
+  DEBUG_SERIAL.println("Position 5");
+  setArcParameters((4.0*PI)/3.0,10,1);
+  delay(2000);
+  DEBUG_SERIAL.println("Home");
+  setArcParameters(0,0,1);
+  delay(2000);
+//  DEBUG_SERIAL.println("Position 6");
+//  setArcParameters((5.0*PI)/3.0,10,1);
+//  delay(2000);
+//  DEBUG_SERIAL.println("Home");
+//  setArcParameters(0,0,1);
+//  delay(2000);
  
 }
