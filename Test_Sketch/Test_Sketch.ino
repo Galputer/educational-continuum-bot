@@ -610,35 +610,17 @@ void loop() {
   DEBUG_SERIAL.println("Home");
   setArcParameters(0,0,1);
   delay(2000);
-//  DEBUG_SERIAL.println("Position 2");
-//  setArcParameters(PI/3.0,10,1);
-//  delay(2000);
-//  DEBUG_SERIAL.println("Home");
-//  setArcParameters(0,0,1);
-//  delay(2000);
-  DEBUG_SERIAL.println("Position 3");
+  DEBUG_SERIAL.println("Position 2");
   setArcParameters((2.0*PI)/3.0,10,1);
   delay(2000);
   DEBUG_SERIAL.println("Home");
   setArcParameters(0,0,1);
   delay(2000);
-//  DEBUG_SERIAL.println("Position 4");
-//  setArcParameters(PI,10,1);
-//  delay(2000);
-//  DEBUG_SERIAL.println("Home");
-//  setArcParameters(0,0,1);
-//  delay(2000);
-  DEBUG_SERIAL.println("Position 5");
+  DEBUG_SERIAL.println("Position 3");
   setArcParameters((4.0*PI)/3.0,10,1);
   delay(2000);
   DEBUG_SERIAL.println("Home");
   setArcParameters(0,0,1);
   delay(2000);
-//  DEBUG_SERIAL.println("Position 6");
-//  setArcParameters((5.0*PI)/3.0,10,1);
-//  delay(2000);
-//  DEBUG_SERIAL.println("Home");
-//  setArcParameters(0,0,1);
-//  delay(2000);
  
 }
