@@ -32,7 +32,7 @@ const float R_PRIME = 0.020; // Radial distance from spine to tendons [meters]
 const float NOTCH_HEIGHT = 0.030; // Height of cutout sections [meters]
 const float DISC_HEIGHT = 0.005; // Height of discs [meters]
 const int NUM_NOTCHES = 6; // Number of notched sections
-const float SPOOL_DIAMETER = 0.052; // Diameter of cable spools [meters]
+const float SPOOL_DIAMETER = 0.0515; // Diameter of cable spools [meters]
 const float GAMMA = (2.0*PI)/3.0; // Angular distance between tendons [radians]
 
 // Dynamixel Configuration
