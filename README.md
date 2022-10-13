@@ -1,7 +1,6 @@
 # educational-continuum-bot
-RBE 522 Research to design a comprehensive continuum robot oriented towards use by future students.
+RBE 522 Research to design and test an educational continuum robot platofrm for use by future students.
 
-The robot this project is designed for is a 5 linked spherical structure with 4 gaps to linked through the spheres by string placed at three equillateral points from top to bottom.
+The robot this project is designed for is tendon-driven continuum robot consisting of several discs connected by a central flexible spine. The robot's mechanical structure is fully 3D printed with a PTEG base and Nylon spine/disc assembly. The robot is actuated by 3 Dyanmixel motors which are controlled by an OpenRB-150 developmetn board.
 
-The hole is 19.5 mm from the center and at a 45 degree angle from the peak of the "gear"
-Each link rolls against the others and the end result is envisioned as a finger that is able to roll around to draw out a circle.
+More detailed specifications for the robot can be found in the assocaited documentation included within the repository.
